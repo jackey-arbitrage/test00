@@ -3,20 +3,25 @@
     <property name="src.dir"     value="src"/>
     <property name="build.dir"   value="build"/>
     <property name="debug.dir" value="${build.dir}/debug"/>
-    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="release.dir" value="${build.dir}/release"/>
     <property name="lib.dir"     value="/usr/lib"/>
-    <property name="main-class"  value="hello"/>
-
+    
     <cpptasks:linker id="LinuxLinker" name="g++" libtool="true">
         <!-- <linkerarg value="-L${lib.dir}" /> -->
         <libset libs="stdc++"/>
     </cpptasks:linker>
 
-    <target name="clean">
-            <delete dir="${build.dir}"/>
+    <target name="clean-debug">
+            <delete dir="${debug.dir}"/>
     </target>
+    
+    <target name="clean-release">
+            <delete dir="${release.dir}"/>
+    </target>
+    
+    <target name="clean" depends="clean-debug,clean-release"/>
 
-    <target name="compile-debug">
+    <target name="compile-debug" depends="clean-debug">
        <mkdir dir="${debug.dir}"/>
        <cpptasks:cc name="g++" outtype="executable" subsystem="console" outfile="${debug.dir}/testLock" objdir="${debug.dir}" debug="true">
             <linker refid="LinuxLinker"/>
@@ -24,6 +29,14 @@
        </cpptasks:cc>
      </target>
 
-    <target name="all" depends="clean,compile-debug"/>
+    <target name="compile-release" depends="clean-release">
+       <mkdir dir="${release.dir}"/>
+       <cpptasks:cc name="g++" outtype="executable" subsystem="console" outfile="${release.dir}/testLock" objdir="${release.dir}">
+            <linker refid="LinuxLinker"/>
+            <fileset file="${src.dir}/*.cpp"/>
+       </cpptasks:cc>
+     </target>
+
+    <target name="all" depends="clean,compile-debug,compile-release"/>
 
 </project>
