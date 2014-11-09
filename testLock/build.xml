@@ -1,0 +1,29 @@
+<project name="TestLock" basedir="." default="all" xmlns:cpptasks="antlib:net.sf.antcontrib.cpptasks">
+
+    <property name="src.dir"     value="src"/>
+    <property name="build.dir"   value="build"/>
+    <property name="debug.dir" value="${build.dir}/debug"/>
+    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="lib.dir"     value="/usr/lib"/>
+    <property name="main-class"  value="hello"/>
+
+    <cpptasks:linker id="LinuxLinker" name="g++" libtool="true">
+        <!-- <linkerarg value="-L${lib.dir}" /> -->
+        <libset libs="stdc++"/>
+    </cpptasks:linker>
+
+    <target name="clean">
+            <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="compile-debug">
+       <mkdir dir="${debug.dir}"/>
+       <cpptasks:cc name="g++" outtype="executable" subsystem="console" outfile="${debug.dir}/testLock" objdir="${debug.dir}" debug="true">
+            <linker refid="LinuxLinker"/>
+            <fileset file="${src.dir}/*.cpp"/>
+       </cpptasks:cc>
+     </target>
+
+    <target name="all" depends="clean,compile-debug"/>
+
+</project>

@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="g++ noversion nomachine-c -g">
+      <target file="testLock.o" lastModified="14993fed5c0">
+         <source file="../../src/testLock.cpp" lastModified="14993c877c8"/>
+      </target>
+   </processor>
+   <processor signature="gcc -g -lstdc++ -lstdc++">
+      <target file="testLock" lastModified="14993fed5c0">
+         <source file="testLock.o" lastModified="14993fed5c0"/>
+      </target>
+   </processor>
+</history>
