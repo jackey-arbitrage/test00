@@ -3,7 +3,7 @@ public class hello
   public hello()
   {
     System.out.println("hello world! 12345");
-    System.out.println(feature 2 added!");
+    System.out.println("feature 2 added!");
 
   }
 

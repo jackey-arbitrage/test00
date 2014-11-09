@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="build-all" default="all">
+
+  <target name="all">
+    <ant dir="java-component1" inheritAll="false" inheritRefs="false" useNativeBasedir="true" />
+    <ant dir="testLock" inheritAll="false" inheritRefs="false" useNativeBasedir="true" />
+  </target>
+
+</project>
